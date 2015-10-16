@@ -1,8 +1,10 @@
 module Hangman
   class Game
-    def initialize(players)
+    attr_reader :guesses_left
+    
+    def initialize(players, guesses_left=6)
       @players = players
-
+      @guesses_left = guesses_left
     end
 
     def play
@@ -12,6 +14,7 @@ module Hangman
       add_guessing_word
       puts "#{@guessing_player.name}, here you have the word"
       display_guessing_word_to_dashes
+      puts "#{guesses_left} guesses left to die. Be carefull man!"
     end
 
     def select_guessing_player
