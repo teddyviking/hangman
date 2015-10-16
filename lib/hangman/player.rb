@@ -1,6 +1,6 @@
 module Hangman
   class Player
-    attr_reader :word
+    attr_reader :word, :name
     def initialize(name)
       @name= name
       
