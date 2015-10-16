@@ -1,8 +1,8 @@
-require "hangman/version"
+# require "hangman/version"
 
 module Hangman
   # Your code goes here...
 end
 
-require_relative "./tic_tac_toe/player.rb"
-require_relative "./tic_tac_toe/game.rb"
+require_relative "./hangman/player.rb"
+require_relative "./hangman/game.rb"
