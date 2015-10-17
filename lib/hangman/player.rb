@@ -10,8 +10,15 @@ module Hangman
       @word = gets.chomp
     end
 
-
+    def make_a_guess
+      guess = gets.chomp
+    end
 
   end
 
 end
+
+#Why should be these two methods here?
+#When we extend the class and create the AI player, 
+#we will have to redefine those methods, but we don't want
+#the class game to be affected 
