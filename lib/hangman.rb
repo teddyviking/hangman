@@ -1,5 +1,5 @@
 # require "hangman/version"
-
+require "pry"
 module Hangman
   # Your code goes here...
 end

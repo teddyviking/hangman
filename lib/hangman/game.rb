@@ -26,7 +26,8 @@ module Hangman
       puts "#{guesses_left} guesses left to die. Be careful man!"
       attempted_letter = make_a_guess
       correct_guess?(guessing_word, attempted_letter ) ? guess_right(attempted_letter) : downsize_guesses
-      play_guessing_turn unless game_over_message(guessing_word)
+      play_guessing_turn(guessing_word) unless message = game_over_message(guessing_word)
+      puts message
     end
 
     def make_a_guess
@@ -77,7 +78,7 @@ module Hangman
     end
 
     def win_condition(correct_letters, guessing_word)
-      correct_letters.all?{|letter| guessing_word.include?(letter)}
+      guessing_word.split("").all?{|letter| correct_letters.include?(letter)}
     end
 
     def lose_condition(guesses_left)
