@@ -1,13 +1,13 @@
 module Hangman
   class Player
-    attr_reader :word, :name
+    attr_reader :name
     def initialize(name)
       @name= name
       
     end
 
     def add_guessing_word
-      @word = gets.chomp #need to hide the word!
+      word = gets.chomp #need to hide the word!
     end
 
     def make_a_guess

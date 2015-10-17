@@ -42,7 +42,7 @@ Now that we have our action plan, let's create the classes and methods that fulf
 
 But what happens if one day you are coding and, just like me, suddenly you feel the nostalgia overcoming you. You need desperately to play with your Hangman and you cannot find someone to play with... Let's solve this issue changing our program so you don't require another person to choose the word you have to guess!
 
-And how are we going to achieve that? A class Dictionary will to load all the possible words from an external file into our program.
+And how are we going to achieve that? A class Dictionary will load all the possible words from an external file into our program.
 
 The `Dictionary` class should:
 * Load an external dictionary (a list of words) into our program. For example from [this webpage](http://scrapmaker.com/)

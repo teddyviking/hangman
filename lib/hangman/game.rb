@@ -1,6 +1,5 @@
 module Hangman
   class Game
-    attr_reader :guesses_left
     
     def initialize(players, guesses_left=6)
       @players = players
@@ -13,12 +12,29 @@ module Hangman
       play_guessing_turn(@guessing_word)
     end
 
+
+    private
+
     def set_game
       puts "Let's play hangman!"
       select_guessing_player
       puts "#{@evil_player.name} has been selected to add a word. Please #{@guessing_player.name}, don't look at the screen"
       @guessing_word = add_guessing_word
       puts "#{@guessing_player.name}, here you have the word:"
+    end
+
+    def select_guessing_player
+      ai_player = @players.find { |player| player.class == AIPlayer }
+      if ai_player
+        human_player = @players.find { |player| player.class != AIPlayer}
+        @evil_player, @guessing_player = ai_player, human_player
+      else
+        @guessing_player, @evil_player = @players.shuffle
+      end
+    end
+
+    def add_guessing_word
+      @evil_player.add_guessing_word
     end
 
     def play_guessing_turn(guessing_word)
@@ -51,15 +67,6 @@ module Hangman
     end
 
    
-
-    private
-    def select_guessing_player
-      @guessing_player, @evil_player = @players.shuffle
-    end
-
-    def add_guessing_word
-      @evil_player.add_guessing_word
-    end
 
     def display_guessing_word_to_dashes(guessing_word, correct_letters)
       guessing_word.each_char do |char| 
