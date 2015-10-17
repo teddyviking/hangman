@@ -18,6 +18,7 @@ module Hangman
       puts "#{guesses_left} guesses left to die. Be careful man!"
       attempted_letter = make_a_guess
       correct_guess?(guessing_word, attempted_letter ) ? guess_right(attempted_letter) : downsize_guesses
+      game_over_message(guessing_word)
     end
 
     def select_guessing_player
@@ -46,6 +47,11 @@ module Hangman
       downsize_guesses
       puts "You only have #{@guesses} left"
     end
+    
+    def game_over_message(guessing_word)
+      return "#{@guessing_player.name} won!" if game_over?(guessing_word) == :win
+      return "#{@evil_player.name} won!" if game_over?(guessing_word) == :lose
+    end
 
    
 
@@ -63,6 +69,22 @@ module Hangman
       @guesses_left -= 1
     end
 
+    def win_condition(correct_letters, guessing_word)
+      correct_letters.all?{|letter| guessing_word.include?(letter)}
+    end
 
+    def lose_condition(guesses_left)
+      @guesses_left <= 0
+    end
+
+    def game_over?(guessing_word)
+      return :win if win_condition(@correct_letters, guessing_word)
+       
+      return :lose if  lose_condition(@guesses_left)
+        
+    end
   end
 end
+
+#Why don't use instance variables? Because if I change the implementation
+#of the variables, the rest of the methods won't change
