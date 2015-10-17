@@ -22,7 +22,7 @@ module Hangman
     end
 
     def play_guessing_turn(guessing_word)
-      display_guessing_word_to_dashes(@guessing_word)
+      display_guessing_word_to_dashes(guessing_word, @correct_letters)
       puts "#{guesses_left} guesses left to die. Be careful man!"
       attempted_letter = make_a_guess
       correct_guess?(guessing_word, attempted_letter ) ? guess_right(attempted_letter) : downsize_guesses
@@ -61,8 +61,11 @@ module Hangman
       @evil_player.add_guessing_word
     end
 
-    def display_guessing_word_to_dashes(guessing_word)
-      guessing_word.each_char { |char| print "_ " }
+    def display_guessing_word_to_dashes(guessing_word, correct_letters)
+      guessing_word.each_char do |char| 
+        correct_letters.include?(char) ? (print "#{char} ") : (print "_ ")
+        puts "\n" if char == guessing_word[-1]
+      end
     end
 
     def correct_guess?(guessing_word, attempted_letter)
